@@ -1,0 +1,16 @@
+{
+  "vars": {
+    "month": "May",
+    "year": "2026",
+    "date": "2026-06-03"
+  },
+  "title": "Report for {{month}} {{year}}",
+  "paragraphs": ["Generated on {{date}}"],
+  "tables": [
+    {
+      "columns": ["Employee", "Projects", "Hours"],
+      "rows": [["Anna", "CRM, Dashboard", "142"], ["Igor", "API", "98"]],
+      "professional": true
+    }
+  ]
+}

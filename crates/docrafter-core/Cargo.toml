@@ -1,0 +1,20 @@
+[package]
+name = "docrafter-core"
+readme = "../../README.md"
+description = "Core types, styles, and errors for the docrafter document library"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[dependencies]
+thiserror.workspace = true
+
+[dev-dependencies]
+
+[lints]
+workspace = true

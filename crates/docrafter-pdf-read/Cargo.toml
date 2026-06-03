@@ -1,0 +1,32 @@
+[package]
+name = "docrafter-pdf-read"
+readme = "../../README.md"
+description = "PDF reading and merge for docrafter"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[features]
+default = ["ocr"]
+ocr = ["dep:docrafter-ocr", "dep:docrafter-pdf-render"]
+
+[dependencies]
+docrafter-core.workspace = true
+docrafter-font.workspace = true
+docrafter-ocr = { path = "../docrafter-ocr", version = "0.1.0", optional = true }
+docrafter-pdf-render = { path = "../docrafter-pdf-render", version = "0.1.0", optional = true }
+lopdf.workspace = true
+md5 = "0.7"
+
+[dev-dependencies]
+docrafter-pdf-write.workspace = true
+docrafter-testing.workspace = true
+docrafter-core.workspace = true
+
+[lints]
+workspace = true

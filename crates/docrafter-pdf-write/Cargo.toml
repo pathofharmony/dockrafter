@@ -1,0 +1,27 @@
+[package]
+name = "docrafter-pdf-write"
+readme = "../../README.md"
+description = "PDF generation backend for docrafter"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[dependencies]
+docrafter-core.workspace = true
+docrafter-layout.workspace = true
+docrafter-font.workspace = true
+docrafter-office.workspace = true
+pdf-writer.workspace = true
+image.workspace = true
+miniz_oxide.workspace = true
+
+[dev-dependencies]
+docrafter-testing.workspace = true
+
+[lints]
+workspace = true

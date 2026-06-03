@@ -1,0 +1,76 @@
+[workspace]
+resolver = "2"
+members = [
+    "crates/docrafter",
+    "crates/docrafter-core",
+    "crates/docrafter-layout",
+    "crates/docrafter-font",
+    "crates/docrafter-testing",
+    "crates/docrafter-pdf-write",
+    "crates/docrafter-pdf-read",
+    "crates/docrafter-pdf-render",
+    "crates/docrafter-ocr",
+    "crates/docrafter-template",
+    "crates/docrafter-html",
+    "crates/docrafter-docx",
+    "crates/docrafter-office",
+    "crates/docrafter-odt",
+    "crates/docrafter-cli",
+]
+default-members = ["crates/docrafter"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.78"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/pathofharmony/dockrafter"
+homepage = "https://github.com/pathofharmony/dockrafter"
+documentation = "https://docs.rs/docrafter"
+authors = ["pathofharmony"]
+keywords = ["pdf", "docx", "document", "office"]
+categories = ["text-processing", "encoding"]
+
+[workspace.dependencies]
+docrafter-core = { path = "crates/docrafter-core", version = "0.1.0" }
+docrafter-layout = { path = "crates/docrafter-layout", version = "0.1.0" }
+docrafter-font = { path = "crates/docrafter-font", version = "0.1.0" }
+ttf-parser = "0.25"
+docrafter-testing = { path = "crates/docrafter-testing", version = "0.1.0" }
+docrafter-pdf-write = { path = "crates/docrafter-pdf-write", version = "0.1.0" }
+docrafter-pdf-read = { path = "crates/docrafter-pdf-read", version = "0.1.0", default-features = false }
+docrafter-pdf-render = { path = "crates/docrafter-pdf-render", version = "0.1.0" }
+docrafter-ocr = { path = "crates/docrafter-ocr", version = "0.1.0" }
+docrafter-template = { path = "crates/docrafter-template", version = "0.1.0" }
+docrafter-html = { path = "crates/docrafter-html", version = "0.1.0" }
+docrafter-cli = { path = "crates/docrafter-cli", version = "0.1.0" }
+docrafter = { path = "crates/docrafter", version = "0.1.0", default-features = false }
+clap = { version = "4.5", features = ["derive"] }
+docrafter-office = { path = "crates/docrafter-office", version = "0.1.0" }
+ocrs = "0.12"
+rten = "0.24"
+zenpdf = "0.2"
+lopdf = "0.34"
+docrafter-docx = { path = "crates/docrafter-docx", version = "0.1.0" }
+docrafter-odt = { path = "crates/docrafter-odt", version = "0.1.0" }
+zip = { version = "2", default-features = false, features = ["deflate"] }
+quick-xml = "0.37"
+
+thiserror = "2"
+pdf-writer = "0.12"
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+miniz_oxide = "0.8"
+sha2 = "0.10"
+hex = "0.4"
+insta = { version = "1", features = ["redactions"] }
+
+[workspace.lints.rust]
+unsafe_code = "forbid"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+cargo = { level = "warn", priority = -1 }
+
+[profile.release]
+lto = true
+codegen-units = 1

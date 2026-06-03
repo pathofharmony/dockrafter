@@ -1,0 +1,25 @@
+[package]
+name = "docrafter-docx"
+readme = "../../README.md"
+description = "DOCX (OOXML) read/write for docrafter"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[dependencies]
+docrafter-core.workspace = true
+docrafter-office.workspace = true
+zip.workspace = true
+quick-xml.workspace = true
+image.workspace = true
+
+[dev-dependencies]
+docrafter-testing.workspace = true
+
+[lints]
+workspace = true

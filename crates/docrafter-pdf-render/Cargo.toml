@@ -1,0 +1,22 @@
+[package]
+name = "docrafter-pdf-render"
+readme = "../../README.md"
+description = "Pure-Rust PDF page rasterization for docrafter"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[dependencies]
+docrafter-core.workspace = true
+zenpdf = "0.2"
+
+[dev-dependencies]
+docrafter-pdf-write.workspace = true
+
+[lints]
+workspace = true

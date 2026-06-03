@@ -1,0 +1,40 @@
+[package]
+name = "docrafter"
+readme = "../../README.md"
+description = "Unified high-quality library for PDF and DOCX documents"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[features]
+default = ["ocr"]
+ocr = [
+    "dep:docrafter-ocr",
+    "dep:docrafter-pdf-render",
+    "docrafter-pdf-read/ocr",
+]
+
+[dependencies]
+docrafter-core.workspace = true
+docrafter-layout.workspace = true
+docrafter-pdf-write.workspace = true
+docrafter-pdf-read.workspace = true
+docrafter-pdf-render = { workspace = true, optional = true }
+docrafter-ocr = { workspace = true, optional = true }
+docrafter-template.workspace = true
+docrafter-docx.workspace = true
+docrafter-odt.workspace = true
+docrafter-office.workspace = true
+docrafter-html.workspace = true
+
+[dev-dependencies]
+docrafter-testing.workspace = true
+zip.workspace = true
+
+[lints]
+workspace = true

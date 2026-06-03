@@ -1,0 +1,22 @@
+[package]
+name = "docrafter-ocr"
+readme = "../../README.md"
+description = "Pure-Rust OCR engine for docrafter (Tesseract analog)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+keywords.workspace = true
+categories.workspace = true
+exclude = ["models/"]
+
+[dependencies]
+docrafter-core.workspace = true
+ocrs = "0.12"
+rten = "0.24"
+image.workspace = true
+
+[lints]
+workspace = true

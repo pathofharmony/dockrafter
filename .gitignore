@@ -1,0 +1,11 @@
+/target
+**/*.rs.bk
+*.pdf
+!tests/fixtures/**/*.pdf
+hello.pdf
+.DS_Store
+.cursor/
+.env
+.env.*
+!.env.example
+crates/docrafter-ocr/models/*.rten

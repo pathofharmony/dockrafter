@@ -1,0 +1,51 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+env:
+  CARGO_TERM_COLOR: always
+  RUSTFLAGS: -D warnings
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - run: chmod +x scripts/check.sh && ./scripts/check.sh
+
+  deny:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: EmbarkStudios/cargo-deny-action@v2
+
+  msrv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.78.0
+      - run: cargo test --workspace
+
+  ocr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Cache OCR models
+        uses: actions/cache@v4
+        with:
+          path: crates/docrafter-ocr/models
+          key: ocr-models-v1-${{ hashFiles('scripts/fetch-ocr-models.sh') }}
+      - run: chmod +x scripts/fetch-ocr-models.sh && ./scripts/fetch-ocr-models.sh
+      - run: cargo test -p docrafter-pdf-read
+      - run: cargo test -p docrafter --test pdf_extract
+      - run: cargo build -p docrafter-cli --release
