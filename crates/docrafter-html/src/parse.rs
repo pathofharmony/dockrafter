@@ -203,22 +203,16 @@ impl Parser {
             "tr" => self.flush_row(),
             "th" | "td" => self.flush_cell(),
             "ul" | "ol" => {
-                if let Some(list) = self.list.take() {
-                    if !list.items().is_empty() {
-                        self.doc.push_list(list);
-                    }
+                if let Some(list) = self.list.take().filter(|l| !l.items().is_empty()) {
+                    self.doc.push_list(list);
                 }
             }
-            "li" => {
-                if self.in_li {
-                    if !self.list_item.is_empty() {
-                        if let Some(list) = self.list.as_mut() {
-                            list.push_item(&self.list_item);
-                        }
-                    }
-                    self.list_item.clear();
-                    self.in_li = false;
+            "li" if self.in_li => {
+                if let Some(list) = self.list.as_mut().filter(|_| !self.list_item.is_empty()) {
+                    list.push_item(&self.list_item);
                 }
+                self.list_item.clear();
+                self.in_li = false;
             }
             _ => {}
         }
@@ -260,10 +254,8 @@ impl Parser {
     }
 
     fn flush_para(&mut self) {
-        if let Some(p) = self.para.take() {
-            if !p.text().is_empty() {
-                self.doc.push(p);
-            }
+        if let Some(p) = self.para.take().filter(|p| !p.text().is_empty()) {
+            self.doc.push(p);
         }
         self.para_style = Style::new();
         self.run_style = Style::new();
@@ -287,10 +279,12 @@ impl Parser {
 
     fn flush_table(&mut self) {
         self.flush_row();
-        if let Some(table) = self.table.take() {
-            if !table.columns.is_empty() || !table.rows.is_empty() {
-                self.doc.push_table(table);
-            }
+        if let Some(table) = self
+            .table
+            .take()
+            .filter(|t| !t.columns.is_empty() || !t.rows.is_empty())
+        {
+            self.doc.push_table(table);
         }
     }
 
@@ -351,10 +345,8 @@ impl Parser {
     fn finish(mut self) -> OfficeDocument {
         self.flush_para();
         self.flush_table();
-        if let Some(list) = self.list.take() {
-            if !list.items().is_empty() {
-                self.doc.push_list(list);
-            }
+        if let Some(list) = self.list.take().filter(|l| !l.items().is_empty()) {
+            self.doc.push_list(list);
         }
         self.doc
     }
