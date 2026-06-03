@@ -1,5 +1,9 @@
 # docrafter
 
+<p align="center">
+  <img src=".github/banner.jpg" alt="docrafter" width="720" />
+</p>
+
 [![CI](https://github.com/pathofharmony/dockrafter/actions/workflows/ci.yml/badge.svg)](https://github.com/pathofharmony/dockrafter/actions/workflows/ci.yml)
 [![docs.rs](https://docs.rs/docrafter/badge.svg)](https://docs.rs/docrafter)
 [![crates.io](https://img.shields.io/crates/v/docrafter.svg)](https://crates.io/crates/docrafter)

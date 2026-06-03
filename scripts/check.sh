@@ -16,7 +16,8 @@ echo "==> test"
 cargo test --workspace --all-targets
 
 echo "==> doc"
-RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps
+# docrafter-cli binary shares the name `docrafter` with the lib crate (cargo#6313).
+RUSTDOCFLAGS="-D warnings" cargo doc --workspace --no-deps --exclude docrafter-cli
 
 echo "==> deny"
 if command -v cargo-deny >/dev/null 2>&1; then
